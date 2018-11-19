@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+	@import url('https://fonts.googleapis.com/css?family=Jua|Nanum+Myeongjo');
+	*{
+		font-family: 'Jua', sans-serif;
+
+	}
+	body,ul{
+		margin : 0;
+		padding : 0;
+		background-color: rgba(244,221,71,0.92);
+	}
+	a{
+		text-decoration: none;
+
+	}
+	#wrapper{
+		margin : 5% auto;
+		background-color: white;
+		width : 700px;
+		border-radius: 10px;
+		
+	}
+	header{
+		padding-top : 10px;
+		font-size: 30px;
+		text-align: center;
+	}
+	#go_main{
+		text-align: left;
+		
+	}
+	#go_main img{
+		width: 100px;
+		display: block;
+		padding : 10px 0 0 10px;
+	}
+	#join_form{
+
+		font-size : 20px;
+		
+		text-align: center;
+	}
+	#join_form label{
+		text-align : left;
+		padding-left: 7%;
+		display: block;
+		margin-top: 10px;
+		
+	}
+	#join_form > input{
+
+		width : 600px;
+		height : 25px;
+		border:none;
+		border-bottom : 3px solid #186786;
+		font-size : 18px;
+		box-sizing: border-box;
+	}
+	.select_item input, .select_item select{
+		width : 195px;
+		height : 30px;
+		border:none;
+		border-bottom : 3px solid #186786;
+		box-sizing: border-box;
+		line-height: 20px;
+		font-size: 18px;
+	}
+	 #selmail{
+	 	font-size : 15px;
+	 }
+	.join_input:nth-of-type(7):not(.join_input:nth-of-type(7) label) {
+		
+		padding-left : 7%;
+	}
+	.find_addr{
+		text-align: left;
+		padding-left : 7%;
+	}
+	.find_addr input[type=text]:first-of-type{
+		text-align: left;
+		width : 200px;
+
+	}
+	.find_addr input[type=text]:nth-of-type(3){
+		width : 300px;
+		
+	}
+	.find_addr input[type=text]:last-of-type{
+		width : 295px;
+	}
+	.find_addr input[type=button]{
+		width : 200px;
+		border:none;
+		line-height : 25px;
+		cursor:pointer;
+		background-color:#186786;
+		color : rgba(244,221,71,0.92);
+	}
+	#identify input{
+		width : 400px;
+	}
+	#selmail{
+		border : none;
+		
+	}
+	#identify input{
+		width : 400px;
+	}
+	footer{
+		text-align: center;
+		margin-bottom :10px;
+	}
+	.btn_join_area{
+		padding-left: 7%;
+		margin: 30px 0;
+		overflow: hidden;
+		width : 600px;
+		
+	}
+	.btn_join_area>span{
+		display : inline-block;
+		width:46%;
+		height : 50px;
+		border-radius: 10px;
+		margin-bottom : 20px;
+	}
+	.btn_join_area > span:first-child{
+		margin-right : 5%;
+		float: left;
+	}
+	.btn_join_area > span:last-child{
+		float: right;
+	}
+	.btn_join_area > span > a{
+		
+		line-height : 50px;
+	 	font-size : 30px;
+		width : 100%;
+		display : inline-block;	 
+		background-color: #186786;
+		color : rgba(244,221,71,0.92);	
+	 	
+	}
+	#btn_join_span{
+		margin-right : 5%:
+	}
+	.btn_join:hover{
+		background-color: white;
+		border-color: #186786;
+		color : #186786;
+	}
+	.join_cancel:hover{
+		background-color: white;
+		border-color: #186786;
+		color : #186786;
+		
+	}
+	.clr_both{
+		clear:both;
+	}
+	.strong_label{
+		color:red;
+	}
+</style>
+
+</head>
+<body>
+	<div id="wrapper">
+		<header>
+			<a href="http://localhost:8081/shop_minions/include/header.html" id="go_main"><img src="img/minilog.png"></a>
+			<p>회원가입</p>
+		</header>
+		<form id="join_form">
+			<label>ID<strong class="strong_label">*</strong></label>
+				<input type="text" placeholder="아이디를 입력해주세요">
+			<label>패스워드<strong class="strong_label">*</strong></label>
+				<input type="password" placeholder="Password를 입력해주세요" id="pwd">
+			<label>패스워드 재입력<strong class="strong_label">*</strong></label>
+				<input type="password" placeholder="Password를 재입력해주세요" id="pwd_re">
+			<label>이름</label>
+				<input type="text" placeholder="전화번호를 입력해주세요">
+			<label>생년월일</label>
+			<div class="select_item">
+				<input type="text" placeholder="년(4자)" maxlength="4">
+				<select id="monthselect">
+					<option>1</option>
+					<option>2</option>
+					<option>3</option>
+					<option>4</option>
+					<option>5</option>
+					<option>6</option>
+					<option>7</option>
+					<option>8</option>
+					<option>9</option>
+					<option>10</option>
+					<option>11</option>
+					<option>12</option>
+				</select>
+				<input type="text" placeholder="일" maxlength="2">
+			</div>
+			<label>전화번호<strong class="strong_label">*</strong></label>
+			<div class="select_item" id="identify">
+				<select id="phone_num">
+					<option>010</option>
+					<option>011</option>
+					<option>016</option>
+					<option>017</option>
+					<option>018</option>
+					<option>019</option>
+				</select>
+				
+				<input type="text" placeholder="(-)빼고 전화번호를 입력해주세요"  maxlength="8">
+			</div>
+			<label>주소</label>
+				<input type="text" placeholder="주소를 입력해주세요">
+			<label>E-mail</label>
+			<input type="text" placeholder="E-mail을 입력해주세요(ex)example@example.com)">
+		</form>
+		<footer>
+				<div class="btn_join_area">
+					<span id="btn_join_span"><a href="#" class="btn_join">가입하기</a></span>
+					<span><a href="http://localhost:8081/shop_minions/include/header.html" class="join_cancel">취소</a></span>
+					
+				</div>
+				
+		</footer>
+	</div>
+</body>
+</html>

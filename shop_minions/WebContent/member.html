@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+	@import url('https://fonts.googleapis.com/css?family=Jua|Nanum+Myeongjo');
+	*{
+		font-family: 'Jua', sans-serif;
+
+	}
+	body,ul{
+		margin : 0;
+		padding : 0;
+		background-color: rgba(244,221,71,0.92);
+	}
+	a{
+		text-decoration: none;
+
+	}
+	input[type=button]{
+		border-radius: 10px;
+	}
+	#wrapper{
+		margin : 5% auto;
+		background-color: white;
+		width : 700px;
+		border-radius: 10px;
+		
+	}
+	header{
+		padding-top : 10px;
+		font-size: 30px;
+		text-align: center;
+	}
+	#go_main{
+		text-align: left;
+		
+	}
+	#go_main img{
+		width: 100px;
+		display: block;
+		padding : 10px 0 0 10px;
+	}
+	#join_form{
+		font-size : 20px;
+		text-align: center;
+	}
+	#join_form label{
+		text-align : left;
+		padding-left: 7%;
+		display: block;
+		margin-top: 10px;
+		
+	}
+
+	.join_input input{
+		width : 600px;
+		height : 25px;
+		border:none;
+		border-bottom : 3px solid #186786;
+		font-size : 18px;
+		box-sizing: border-box;
+	}
+	.select_item input, .select_item select {
+		width : 195px;
+		height : 30px;
+		border:none;
+		border-bottom : 3px solid #186786;
+		box-sizing: border-box;
+		line-height: 20px;
+		font-size: 18px;
+	}
+	 #input_email_div input,#input_email_div select{
+		width : 189px;
+		height : 30px;
+		border:none;
+		border-bottom : 3px solid #186786;
+		box-sizing: border-box;
+		line-height: 25px;
+		
+
+	}
+	 #input_email_div input{
+	 	font-size: 18px;
+	 }
+	 #selmail{
+	 	font-size : 15px;
+	 }
+	.join_input:nth-of-type(7):not(.join_input:nth-of-type(7) label) {
+		
+		padding-left : 7%;
+	}
+	.find_addr{
+		text-align: left;
+		padding-left : 7%;
+	}
+	.find_addr input[type=text]:first-of-type{
+		text-align: left;
+		width : 200px;
+
+	}
+	.find_addr input[type=text]:nth-of-type(3){
+		width : 300px;
+		
+	}
+	.find_addr input[type=text]:last-of-type{
+		width : 295px;
+	}
+	.find_addr input[type=button]{
+		width : 200px;
+		border:none;
+		line-height : 25px;
+		cursor:pointer;
+		background-color:#186786;
+		color : rgba(244,221,71,0.92);
+	}
+	#identify input{
+		width : 400px;
+	}
+	#selmail{
+		border : none;
+		
+	}
+	footer{
+		text-align: center;
+		margin-bottom :10px;
+	}
+	.btn_join_area{
+		padding-left: 7%;
+		margin: 30px 0;
+		overflow: hidden;
+		width : 600px;
+		
+	}
+
+	.btn_join_area>span{
+		display : inline-block;
+		width:46%;
+		height : 50px;
+		border-radius: 10px;
+		margin-bottom : 20px;
+	}
+	.btn_join_area > span:first-child{
+		margin-right : 5%;
+		float: left;
+	}
+	.btn_join_area > span:last-child{
+		float: right;
+	}
+	.btn_join_area > span > a{
+		border-radius : 10px;
+		line-height : 50px;
+	 	font-size : 30px;
+		width : 100%;
+		display : inline-block;	 
+		background-color: #186786;
+		color : rgba(244,221,71,0.92);	
+	 	
+	}
+	#btn_join_span{
+		margin-right : 5%:
+	}
+
+	input[type=button]:hover,.btn_join:hover,.join_cancel:hover{
+		background-color: white;
+		border-color: #186786;
+		color : #186786;
+	}
+	.clr_both{
+		clear:both;
+	}
+	.strong_label{
+		color:red;
+	}
+	.err_chk{
+		display: none;
+		color : red;
+	}
+</style>
+<script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
+<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
+<script type="text/javascript">
+$(document).ready(function() {
+	$("input:text:first").focus();
+	$("input").blur(function (){
+		var err_msg;
+		var index = $("input").index(this);
+		var b_color = "#186786";
+		var d_state = "none";
+	
+		if($(this).val()==""){
+		
+			if(index==0||index==1||index==2||index==6){
+				b_color = "red";
+				d_state ="block";
+				err_msg = "필수 정보 입니다.";
+			}
+		}else{
+			b_color = "#186786";
+			d_state ="none";
+			if(this.id == "pwd_re"){
+				if($("#pwd_re").val()==$("#pwd").val()){
+					d_state ="none";					
+				}else{
+					d_state ="block";
+					b_color = "red";
+					$(this).val("");
+					$(this).focus();
+					err_msg = "비밀번호가 일치하지 않습니다.";
+				
+				}
+
+			}
+		}
+		$(this).next(".err_chk").text(err_msg);
+		$(this).css("border-color",b_color);
+		$(this).next(".err_chk").css("display",d_state);
+	});
+	$("#selmail").change(function () {
+		var selmail = $("#selmail").val();
+		/*#selmail의 value 값을 변수에 담아라*/
+		
+		if(selmail == "directVal"){
+			$("#email_url").val("");
+			$("#email_url").focus();
+		}else{
+			$("#email_url").val(selmail);
+			/*#email_url의 value 속성에 selmail 변수에 값을 넣어라*/
+		}
+		
+		
+	});
+});
+function sample6_execDaumPostcode() {
+    new daum.Postcode({
+        oncomplete: function(data) {
+            // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+
+            // 각 주소의 노출 규칙에 따라 주소를 조합한다.
+            // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+            var fullAddr = ''; // 최종 주소 변수
+            var extraAddr = ''; // 조합형 주소 변수
+
+            // 사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
+            if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
+                fullAddr = data.roadAddress;
+
+            } else { // 사용자가 지번 주소를 선택했을 경우(J)
+                fullAddr = data.jibunAddress;
+            }
+
+            // 사용자가 선택한 주소가 도로명 타입일때 조합한다.
+            if(data.userSelectedType === 'R'){
+                //법정동명이 있을 경우 추가한다.
+                if(data.bname !== ''){
+                    extraAddr += data.bname;
+                }
+                // 건물명이 있을 경우 추가한다.
+                if(data.buildingName !== ''){
+                    extraAddr += (extraAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+                }
+                // 조합형주소의 유무에 따라 양쪽에 괄호를 추가하여 최종 주소를 만든다.
+                fullAddr += (extraAddr !== '' ? ' ('+ extraAddr +')' : '');
+            }
+
+            // 우편번호와 주소 정보를 해당 필드에 넣는다.
+            document.getElementById('sample6_postcode').value = data.zonecode; //5자리 새우편번호 사용
+            document.getElementById('sample6_address').value = fullAddr;
+
+            // 커서를 상세주소 필드로 이동한다.
+            document.getElementById('sample6_address2').focus();
+        }
+    }).open();
+}
+</script>
+</head>
+<body>
+	<div id="wrapper">
+		<header>
+			<a href="http://localhost:8081/shop_minions/include/header.html" id="go_main"><img src="img/minilog.png"></a>
+			<p>회원가입</p>
+		</header>
+		<form id="join_form">
+			<div class="join_input" id="input_id_div">
+				<label>ID<strong class="strong_label">*</strong></label>
+				<input type="text" placeholder="아이디를 입력해주세요" id="id">
+				<div class="err_chk"></div>	
+			</div>
+			<div class="join_input" id="input_pwd_div">
+			<label>패스워드<strong class="strong_label">*</strong></label>
+				<input type="password" placeholder="Password를 입력해주세요" id="pwd">
+				<div class="err_chk"></div>
+			</div>
+			<div class="join_input" id="input_pwd2_div">
+			<label>패스워드 재입력<strong class="strong_label">*</strong></label>
+				<input type="password" placeholder="Password를 재입력해주세요" id="pwd_re">
+				<div class="err_chk"></div>
+			</div>
+			<div class="join_input" id="input_phone_div">
+			<label>이름</label>
+				<input type="text" placeholder="이름를 입력해주세요">
+				<div class="err_chk"></div>
+			</div>
+			<div class="join_input" id="input_birth_div">
+			<label>생년월일</label>
+			<div class="select_item">
+				<input type="text" placeholder="년(4자)" maxlength="4">
+				<select id="monthselect">
+					<option>1</option>
+					<option>2</option>
+					<option>3</option>
+					<option>4</option>
+					<option>5</option>
+					<option>6</option>
+					<option>7</option>
+					<option>8</option>
+					<option>9</option>
+					<option>10</option>
+					<option>11</option>
+					<option>12</option>
+				</select>
+				<input type="text" placeholder="일" maxlength="2">
+			</div>
+			<div class="err_chk">숫자만입력해주세요</div>
+			</div>
+			<div class="join_input" id="input_phone_div">
+			<label>전화번호<strong class="strong_label">*</strong></label>
+			
+			<div class="select_item" id="identify">
+				<select id="phone_num">
+					<option>010</option>
+					<option>011</option>
+					<option>016</option>
+					<option>017</option>
+					<option>018</option>
+					<option>019</option>
+				</select>
+				
+				<input type="text" placeholder="(-)빼고 전화번호를 입력해주세요"  maxlength="8">
+				<div class="err_chk">숫자만입력해주세요</div>
+				</div>
+			</div>
+			<div class="join_input" id="input_addr_div">
+				<label>주소</label>
+				<div class="find_addr">
+					<input type="text" id="sample6_postcode" placeholder="우편번호">
+					<input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기"><br>
+					<input type="text" id="sample6_address" placeholder="주소">
+					<input type="text" id="sample6_address2" placeholder="상세주소">
+				</div>
+
+				
+			</div>
+			<div id="input_email_div" class="join_input">
+				<label>이메일</label>
+				<input type="text" id="email" placeholder="ID">
+				<span>@</span>
+				<input type="text" id="email_url" placeholder="URL">
+		
+					<select id="selmail">
+						<option value="" selected="selected">Email 선택</option>
+						<option value="directVal">직접 입력</option>
+						<option value="naver.com">naver.com(네이버)</option>
+						<option value="daum.net">daum.net(다음카카오)</option>
+						<option value="gmail.com">gmail.com(구글)</option>
+						<option value="nate.com">nate.com(네이트)</option>
+					</select>
+		
+			</div>
+
+		</form>
+		<footer>
+				<div class="btn_join_area">
+					<span id="btn_join_span"><a href="#" class="btn_join">가입하기</a></span>
+					<span><a href="http://localhost:8081/shop_minions/include/header.html" class="join_cancel">취소</a></span>
+					
+				</div>
+				
+		</footer>
+	</div>
+</body>
+</html>
