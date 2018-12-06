@@ -299,7 +299,7 @@
 								</div>
 							</li>
 							<li><a href="">공지사항</a></li>
-							<li><a href="<%=path%>/boardList.bizpoll">커뮤니티</a></li>	
+							<li><a href="<%=path%>/boardList.bizpoll">QnA</a></li>	
 
 					</ul>
 	

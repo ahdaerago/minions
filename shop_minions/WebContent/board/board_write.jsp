@@ -185,10 +185,9 @@ input[type="file"]{display: none;}
 
 		<form method="POST" action = "boardInsertPlay.bizpoll" id="bw_info" name="bw_info"   enctype="multipart/form-data">
 			<div class="bw_title">
-				<select id="bw_cate">
+				<select id="bw_cate" name="category">
 					<option selected="selected">질문</option>
-					<option selected="selected">잡담</option>
-					<option selected="selected">공지</option>
+					<option>잡담</option>
 				</select>
 				<input type="text" placeholder = "제목을 입력해주세요" id="title" name="title">
 				<input type="hidden" value="${sessionScope.loginUser.id}" name="writer" id="writer">
